@@ -1,0 +1,13 @@
+import { requireUser } from "@/lib/auth/session";
+import { AdminShell } from "@/components/admin/admin-shell";
+
+export const dynamic = "force-dynamic";
+
+export default async function AdminDashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const user = await requireUser();
+  return <AdminShell user={user}>{children}</AdminShell>;
+}

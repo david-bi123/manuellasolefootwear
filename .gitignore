@@ -1,0 +1,27 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+.env
+.env.local
+.env*.local
+*.log
+npm-debug.log*
+.DS_Store
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.tmp/
+AUTH.md
+
+# Image curation scratch (kept locally, not needed in repo/deploy)
+public/images/shortlist/
+public/images/shortlist2/
+public/images/candidates/
+public/images/candidates2/
+public/images/hero-candidates/
+public/images/_test/
+public/images/contact-sheet.html
+public/images/product-sheet.html
+
