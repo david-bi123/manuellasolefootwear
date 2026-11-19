@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Montserrat } from "next/font/google";
 import { Toaster } from "sonner";
+import { SITE_IMAGES } from "@/lib/site-images";
 import "./globals.css";
 
 const display = Fraunces({
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     description:
       "Premium footwear for men and women. Explore the collection and order directly on WhatsApp.",
     url: siteUrl,
-    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Manuella Sole Footwear" }],
+    images: [{ url: SITE_IMAGES.og, width: 1200, height: 630, alt: "Manuella Sole Footwear" }],
   },
   twitter: {
     card: "summary_large_image",

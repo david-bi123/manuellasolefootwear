@@ -4,6 +4,7 @@ import { ArrowRight, Footprints, HandHeart, MessageCircle, Sparkles } from "luci
 import { Reveal } from "@/components/motion/reveal";
 import { getSettings } from "@/lib/services/settings";
 import { normaliseWhatsAppNumber } from "@/lib/whatsapp";
+import { SITE_IMAGES } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "About",
@@ -49,7 +50,7 @@ export default async function AboutPage() {
               <div className="aspect-[4/5] overflow-hidden bg-cream shadow-editorial">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/hero.jpg"
+                  src={SITE_IMAGES.hero}
                   alt="Black stiletto heels with a gold chain ankle strap, photographed in warm editorial light"
                   loading="lazy"
                   className="h-full w-full object-cover"

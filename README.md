@@ -89,6 +89,10 @@ scripts/           Seeding, account creation, image tooling
 ## Notes
 
 - Image credits: see [public/images/CREDITS.md](./public/images/CREDITS.md).
+- Editorial photography (hero, story, promo, OG image) is delivered from
+  Cloudinary with `f_auto, q_auto` — see `src/lib/site-images.ts`. Re-upload
+  with `npx tsx scripts/upload-site-images.ts` after replacing files in
+  `public/images/`.
 - `public/images/shortlist*`, `candidates*` and `_test` hold local image-review
   scratch files; they are intentionally not committed.
 - `AUTH.md` is kept out of the public repo (it documents internal auth behaviour).

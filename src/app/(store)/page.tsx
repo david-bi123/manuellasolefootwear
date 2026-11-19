@@ -13,6 +13,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { getCategoriesWithCounts, getFeaturedProducts, getNewArrivals } from "@/lib/services/catalog";
 import { getSettings } from "@/lib/services/settings";
 import { normaliseWhatsAppNumber } from "@/lib/whatsapp";
+import { SITE_IMAGES } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Manuella Sole Footwear — Step Into Your Style",
@@ -119,7 +120,7 @@ export default async function HomePage() {
             <div className="relative mx-auto aspect-[4/5] max-h-[52vh] w-full max-w-[440px] overflow-hidden rounded-2xl rounded-tr-[6rem] bg-cream shadow-editorial ring-1 ring-ink/10 lg:max-h-[58vh]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/hero.jpg"
+                src={SITE_IMAGES.hero}
                 alt="Black stiletto heels with a gold chain ankle strap, styled in warm editorial light"
                 className="h-full w-full object-cover animate-slow-zoom"
                 fetchPriority="high"
@@ -307,7 +308,7 @@ export default async function HomePage() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-cream shadow-editorial ring-1 ring-ink/10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/story.jpg"
+                src={SITE_IMAGES.story}
                 alt="White bow-embellished pumps styled on a sunlit cafe balustrade"
                 loading="lazy"
                 className="h-full w-full object-cover"

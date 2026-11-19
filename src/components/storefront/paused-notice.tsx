@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AlertTriangle, Lock, Mail, MessageCircle, Phone, RefreshCw } from "lucide-react";
 import type { StoreSettings } from "@/lib/services/settings";
+import { SITE_IMAGES } from "@/lib/site-images";
 
 function digits(value: string) {
   return value.replace(/[^\d]/g, "");
@@ -28,7 +29,7 @@ export function PausedNotice({ settings }: { settings: StoreSettings }) {
       {/* ambient background */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-[0.12]"
-        style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        style={{ backgroundImage: `url('${SITE_IMAGES.hero}')` }}
         aria-hidden="true"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink to-ink" aria-hidden="true" />

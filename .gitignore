@@ -25,3 +25,7 @@ public/images/_test/
 public/images/contact-sheet.html
 public/images/product-sheet.html
 
+
+# Playwright CLI session artifacts
+.playwright-cli/
+

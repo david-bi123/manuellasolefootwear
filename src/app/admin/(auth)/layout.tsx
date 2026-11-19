@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoMark } from "@/components/ui/logo-mark";
+import { SITE_IMAGES } from "@/lib/site-images";
 
 export default function AdminAuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,7 +8,7 @@ export default function AdminAuthLayout({ children }: { children: React.ReactNod
       <aside className="relative hidden overflow-hidden bg-ink lg:block">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-45"
-          style={{ backgroundImage: "url('/images/promo.jpg')" }}
+          style={{ backgroundImage: `url('${SITE_IMAGES.promo}')` }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/30" />
