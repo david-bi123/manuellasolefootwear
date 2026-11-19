@@ -8,6 +8,14 @@ import { setSiteStatusAction } from "@/actions/platform";
 import { Button } from "@/components/ui/button";
 import { Field, Hint } from "@/components/ui/field";
 
+/** True when the client called a server action from an older deployment. */
+function isStaleActionError(error: unknown) {
+  const message = error instanceof Error ? error.message : String(error ?? "");
+  return /unrecognizedactionerror|failed to find server action|was not found on the server/i.test(
+    message,
+  );
+}
+
 export function PlatformControls({
   paused,
   pausedAt,
@@ -24,13 +32,23 @@ export function PlatformControls({
 
   function update(nextPaused: boolean) {
     startTransition(async () => {
-      const result = await setSiteStatusAction({ paused: nextPaused, reason });
-      if (result.ok) {
-        toast.success(result.message ?? "Site status updated.");
-        setConfirming(false);
-        router.refresh();
-      } else {
-        toast.error(result.error ?? "Could not update the site status.");
+      try {
+        const result = await setSiteStatusAction({ paused: nextPaused, reason });
+        if (result.ok) {
+          toast.success(result.message ?? "Site status updated.");
+          setConfirming(false);
+          router.refresh();
+        } else {
+          toast.error(result.error ?? "Could not update the site status.");
+        }
+      } catch (error) {
+        if (isStaleActionError(error)) {
+          toast.warning("A new version of the site was deployed. Reloading…");
+          window.location.reload();
+          return;
+        }
+        console.error("[platform] action failed:", error);
+        toast.error("The request failed. Please try again.");
       }
     });
   }

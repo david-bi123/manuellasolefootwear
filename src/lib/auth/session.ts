@@ -4,6 +4,7 @@ import { SignJWT } from "jose";
 import { cache } from "react";
 import { connectDB } from "@/lib/db";
 import { Admin } from "@/lib/models/admin";
+import { getSiteStatus } from "@/lib/services/site";
 import { hasPermission, type Permission, type Role } from "@/lib/roles";
 import { SESSION_COOKIE, sessionSecret, verifySessionToken } from "@/lib/auth/token";
 
@@ -70,6 +71,11 @@ export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
       .lean();
 
     if (!admin) return null;
+
+    // While the site is paused, only the super admin keeps access — everyone
+    // else is treated as signed out until the site is resumed.
+    const site = await getSiteStatus();
+    if (site.status === "paused" && admin.role !== "superadmin") return null;
 
     return {
       id: String(admin._id),

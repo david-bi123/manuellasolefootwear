@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "recharts"],
   },
+  // Version-skew protection: Next appends the deployment ID to asset URLs and
+  // hard-navigates clients whose bundle predates this deployment, instead of
+  // throwing "Server Action was not found on the server" errors.
+  deploymentId:
+    process.env.VERCEL_DEPLOYMENT_ID || process.env.VERCEL_GIT_COMMIT_SHA || undefined,
 };
 
 export default nextConfig;
