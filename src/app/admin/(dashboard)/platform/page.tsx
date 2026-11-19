@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { requireSuperAdmin } from "@/lib/auth/session";
 import { getSiteStatus } from "@/lib/services/site";
+import { getSiteUrl, isSiteUrlConfigured } from "@/lib/site-url";
 import { getDashboardData, resolveRange } from "@/lib/services/analytics";
 import { getTeamStats } from "@/lib/services/team";
 import { formatDateTime, formatMoney, formatNumber } from "@/lib/format";
@@ -126,9 +127,9 @@ export default async function PlatformPage() {
               detail={process.env.SESSION_SECRET ? "Configured" : "Missing — sign-in will fail"}
             />
             <HealthRow
-              ok={Boolean(process.env.NEXT_PUBLIC_SITE_URL)}
+              ok={isSiteUrlConfigured()}
               label="Site URL"
-              detail={process.env.NEXT_PUBLIC_SITE_URL || "Falling back to localhost"}
+              detail={getSiteUrl()}
             />
           </ul>
         </Card>

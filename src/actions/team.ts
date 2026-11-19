@@ -5,6 +5,7 @@ import { z } from "zod";
 import { actionError, actionOk, type ActionResult } from "@/lib/action-result";
 import { requirePermission } from "@/lib/auth/session";
 import { connectDB } from "@/lib/db";
+import { getSiteUrl } from "@/lib/site-url";
 import {
   acceptInvitation,
   inviteMember,
@@ -26,7 +27,7 @@ export async function inviteMemberAction(
   }
   try {
     await connectDB();
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const siteUrl = getSiteUrl();
     const result = await inviteMember(user.id, parsed.data, siteUrl);
     revalidatePath("/admin/team");
     return actionOk(
@@ -103,7 +104,7 @@ export async function resendInviteAction(id: string): Promise<ActionResult<{ inv
   await requirePermission("team.manage");
   try {
     await connectDB();
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const siteUrl = getSiteUrl();
     const { Admin } = await import("@/lib/models/admin");
     const { createInvitationToken } = await import("@/lib/auth/invitations");
     const admin = await Admin.findById(id);

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Montserrat } from "next/font/google";
 import { Toaster } from "sonner";
 import { SITE_IMAGES } from "@/lib/site-images";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const display = Fraunces({
@@ -18,7 +19,7 @@ const sans = Montserrat({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

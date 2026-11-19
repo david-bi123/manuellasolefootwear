@@ -14,6 +14,7 @@ import { getCategoriesWithCounts, getFeaturedProducts, getNewArrivals } from "@/
 import { getSettings } from "@/lib/services/settings";
 import { normaliseWhatsAppNumber } from "@/lib/whatsapp";
 import { SITE_IMAGES } from "@/lib/site-images";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Manuella Sole Footwear — Step Into Your Style",
@@ -429,7 +430,7 @@ export default async function HomePage() {
             "@type": "Store",
             name: settings.businessName,
             slogan: settings.tagline,
-            url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+            url: getSiteUrl(),
             currenciesAccepted: "GHS",
             paymentAccepted: "Cash, Mobile Money, Bank Transfer",
             ...(wa ? { telephone: `+${settings.whatsappNumber}` } : {}),

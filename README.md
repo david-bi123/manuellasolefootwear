@@ -53,7 +53,9 @@ production:
 
 - `MONGODB_URI` — MongoDB Atlas connection string
 - `SESSION_SECRET` — long random string for signing admin sessions
-- `NEXT_PUBLIC_SITE_URL` — public origin, e.g. `https://manuellasolefootwear.vercel.app`
+- `APP_SITE_URL` - public origin, e.g. `https://manuellasolefootwear.vercel.app`
+  (read by `src/lib/site-url.ts`; `NEXT_PUBLIC_SITE_URL` is honoured as a
+  legacy fallback, then `VERCEL_URL`, then `http://localhost:3000` for local dev)
 - `WHATSAPP_NUMBER` — business WhatsApp number (digits only, international format)
 - `CLOUDINARY_*` — image storage (optional)
 - `OWNER_*` / `SUPERADMIN_*` — only used by the create-* scripts
@@ -66,7 +68,7 @@ production:
    install command `npm install` — defaults are fine.
 3. Add the environment variables above in
    **Project → Settings → Environment Variables** (Production + Preview).
-   Set `NEXT_PUBLIC_SITE_URL` to your final domain.
+   Set `APP_SITE_URL` to your final domain.
 4. Deploy. Then seed the production database once
    (`npm run seed:demo` locally with the production `MONGODB_URI`, or use the
    admin console after `npm run create-owner`).

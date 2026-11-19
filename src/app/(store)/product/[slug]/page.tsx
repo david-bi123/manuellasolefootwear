@@ -8,10 +8,11 @@ import { ProductCard } from "@/components/storefront/product-card";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { getProductBySlug, getRelatedProducts } from "@/lib/services/catalog";
 import { getSettings } from "@/lib/services/settings";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-dynamic";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const SITE_URL = getSiteUrl();
 
 function summarise(text: string, length = 155) {
   const clean = text.replace(/\s+/g, " ").trim();
